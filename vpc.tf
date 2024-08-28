@@ -54,8 +54,6 @@ resource "aws_route_table_association" "wp-public-route-table-association" {
 
 # Create a NAT gateway Elastic IP
 resource "aws_eip" "wp-nat-eip" {
-  vpc = true
-
   tags = {
     Name = "wp-nat-eip"
   }
