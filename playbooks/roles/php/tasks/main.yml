@@ -1,0 +1,23 @@
+---
+- name: Add PHP repo
+  apt_repository:
+    repo: '{{ php_fpm.repo }}'
+
+- name: Install PHP
+  apt:
+    pkg:
+      - php{{ php_fpm.version }}
+      - php{{ php_fpm.version }}-cli
+      - php{{ php_fpm.version }}-common
+      - php{{ php_fpm.version }}-curl
+      - php{{ php_fpm.version }}-dev
+      - php{{ php_fpm.version }}-fpm
+      - php{{ php_fpm.version }}-gd
+      - php{{ php_fpm.version }}-mbstring
+      - php{{ php_fpm.version }}-mysql
+      - php{{ php_fpm.version }}-opcache
+      - php{{ php_fpm.version }}-xml
+      - php{{ php_fpm.version }}-xmlrpc
+      - php{{ php_fpm.version }}-zip
+    state: present
+    update_cache: yes

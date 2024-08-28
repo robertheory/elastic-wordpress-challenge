@@ -1,0 +1,13 @@
+#Copy config to a file named vars.yml and change to suit your own needs
+
+## -- PHP configuration -- ##
+php_fpm:
+  repo: ppa:ondrej/php
+  # PHP version to install. Defaults to PHP 7.3.
+  version: 7.4
+
+## -- WordPress configuration -- ##
+db_name: "{{ db_name }}"
+db_user: "{{ db_user }}"
+db_password: "{{ db_password }}"
+db_host: "{{ db_host }}"

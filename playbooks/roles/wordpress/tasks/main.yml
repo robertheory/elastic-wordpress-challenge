@@ -1,0 +1,34 @@
+---
+- name: Install unzip
+  apt:
+    pkg:
+      - unzip
+    update_cache: yes
+
+- name: WordPress download and unpack
+  ansible.builtin.unarchive:
+    src: https://wordpress.org/latest.zip
+    dest: /var/www/html
+    remote_src: yes
+
+- name: wp-config.php configuration
+  template:
+    src: wp-config.php.j2
+    dest: /var/www/html/wordpress/wp-config.php
+
+- name: /var/www/html/wordpress ownership
+  ansible.builtin.file:
+    path: /var/www/html/wordpress
+    owner: www-data
+    group: www-data
+    mode: "0755"
+
+- name: Nginx service restart
+  service:
+    name: nginx
+    state: restarted
+
+- name: PHP-FPM service restart
+  service:
+    name: php{{ php_fpm.version }}-fpm
+    state: restarted

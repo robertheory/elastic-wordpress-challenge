@@ -1,0 +1,11 @@
+---
+- name: Install Nginx
+  apt:
+    pkg:
+      - nginx
+    update_cache: yes
+
+- name: Nginx Vhost configuration
+  template:
+    src: vhost.nginx.conf.j2
+    dest: /etc/nginx/sites-enabled/default
