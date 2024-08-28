@@ -51,13 +51,13 @@ variable "ec2_ami_id" {
 variable "rds_instance_class" {
   description = "The instance class for RDS."
   type        = string
-  default     = "db.t2.micro"
+  default     = "db.t3.micro"
 }
 
 variable "rds_multi_az" {
   description = "Enable Multi-AZ for RDS."
   type        = bool
-  default     = true
+  default     = false
 }
 
 variable "rds_storage_type" {
@@ -114,10 +114,4 @@ variable "provisioner_remote_exec_private_key" {
   description = "The private key for remote execution."
   type        = string
   default     = "./wp-key.pem"
-}
-
-variable "ansible_private_key" {
-  description = "The private key for Ansible."
-  type        = string
-  default     = "wp-key"
 }

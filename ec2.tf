@@ -68,7 +68,7 @@ resource "aws_instance" "wp-ec2" {
   }
 
   provisioner "local-exec" {
-    command = "ANSIBLE_SSH_ARGS='-o StrictHostKeyChecking=no' ansible-playbook -i ${self.public_ip}, -u ${var.provisioner_remote_exec_user} --private-key=${var.ansible_private_key} ./playbooks/wordpress.yml --extra-vars \"db_host=${aws_db_instance.wp-rds.endpoint} db_name=${var.rds_db_name} db_user=${aws_db_instance.wp-rds.username} db_password=${aws_db_instance.wp-rds.password}\""
+    command = "ANSIBLE_SSH_ARGS='-o StrictHostKeyChecking=no' ansible-playbook -i ${self.public_ip}, -u ${var.provisioner_remote_exec_user} --private-key=${var.provisioner_remote_exec_private_key} ./playbooks/wordpress.yml --extra-vars \"db_host=${aws_db_instance.wp-rds.endpoint} db_name=${var.rds_db_name} db_user=${aws_db_instance.wp-rds.username} db_password=${aws_db_instance.wp-rds.password}\""
   }
 
   tags = {
